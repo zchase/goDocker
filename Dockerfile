@@ -1,16 +1,7 @@
-FROM alpine:3.1
-
-# Update
-RUN apk add --update go
-
-#Build
-RUN ls
-RUN go build -o ../bin/server
-RUN go test
-RUN ls
-
-# Bundle app source
-COPY . /src
-
-EXPOSE  8080
-CMD ["exec", "./bin/server 8080"]
+FROM golang
+ 
+ADD . /go/src/
+RUN go install /go/src/src/server.go
+ENTRYPOINT /go/bin/basic_web_server
+ 
+EXPOSE 8080
