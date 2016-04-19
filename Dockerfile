@@ -4,6 +4,7 @@ FROM alpine:3.1
 RUN apk add --update go
 
 #Build
+RUN ls
 RUN go build -o ../bin/server
 RUN go test
 RUN ls
